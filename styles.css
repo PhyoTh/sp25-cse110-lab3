@@ -1,0 +1,212 @@
+:root {
+  --primary-color: hsl(210, 30%, 25%);
+  --secondary-color: #637b94;
+  --text-color: rgb(42, 49, 61);
+  --background-color: hsla(210, 20%, 98%, 1);
+  --accent-color: rgba(41, 128, 185, 0.9);
+  --accent-fallback: #2980b9;
+  --color-p3: color(display-p3 0.15 0.478 0.8);
+  --color-mixed: color-mix(
+    in srgb,
+    var(--accent-color) 80%,
+    var(--background-color) 20%
+  );
+
+  --header-font: "SF Pro Display", sans-serif;
+  --body-font: "SF Pro Text", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--body-font, sans-serif);
+  color: var(--text-color, black);
+  background-color: var(--background-color, white);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  background-color: var(--background-color, #ffffff);
+  z-index: 200;
+  margin-bottom: 0.5rem;
+}
+
+nav h2 {
+  display: flex;
+  justify-content: center;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap; /* this puts the new elements in the next line if there is not enough space */
+  justify-content: center;
+  gap: 1rem;
+  list-style: none; /* removes the bullet points */
+  padding-left: 0;
+}
+
+li:has(> strong) {
+  /* We all agreed Wednesdays .. the whole line will be bolded because it has strong in it*/
+  font-weight: bold;
+}
+
+nav ul li a {
+  display: inline-block;
+  background-color: var(--accent-color, var(--accent-fallback));
+  color: var(--background-color);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none; /* this removes the underscore */
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+  background-color: var(--color-mixed);
+}
+
+[id] {
+  scroll-margin-top: 8rem; /* found this online, very cool, fix the sticky overlay problem*/
+}
+
+#attendance {
+  background-color: hsl(210, 20%, 95%);
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 2rem auto;
+  max-width: 800px;
+}
+
+.section-container {
+  margin: 2rem auto;
+  padding: 1rem;
+
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--primary-color);
+  border-radius: 8px;
+}
+
+#new {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+#new > h2 {
+  grid-column: 1 / -1; /* I was trying multiple ways to make the header look separate from the grid template, but ended up doing this*/
+  text-align: center;
+  margin: 0;
+}
+
+#new > div {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  gap: 0.5rem;
+}
+
+#questions {
+  background-color: var(--background-color);
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  border-radius: 6px;
+  border: 2px dotted var(--secondary-color);
+}
+
+#questions summary {
+  font-weight: 500;
+  cursor: pointer;
+}
+
+#questions summary:hover {
+  color: var(--accent-color, var(--accent-fallback));
+}
+
+#questions summary + p {
+  margin-top: 0.3rem;
+  line-height: 1.4;
+}
+
+#feedback form {
+  display: grid;
+  background-color: #fff;
+  padding: 1rem;
+  border: 1px solid hsl(0, 0%, 80%);
+  border-radius: 6px;
+}
+
+#feedback label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+#feedback input[type="text"],
+#feedback input[type="date"],
+#feedback textarea,
+#feedback select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--secondary-color);
+  border-radius: 4px;
+}
+
+#feedback button[type="submit"] {
+  margin-top: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--accent-color, var(--accent-fallback));
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+}
+
+#feedback button[type="submit"]:active {
+  background-color: hsla(210, 100%, 45%, 0.6);
+}
+
+form > fieldset {
+  border: 1px solid var(--secondary-color, #888);
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+footer {
+  margin: auto;
+  width: 80%;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+footer p {
+  margin-bottom: 0.5vh;
+  letter-spacing: 0.05em;
+  border-bottom: 1pt solid transparent;
+}
+
+footer span {
+  font-weight: bold;
+  text-decoration: underline;
+  padding: 0.1cm 0;
+}
+
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  #new {
+    grid-template-columns: 1fr;
+  }
+}
