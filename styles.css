@@ -67,7 +67,7 @@ nav ul li a {
 
 nav ul li a:hover,
 nav ul li a:focus {
-  background-color: var(--color-mixed);
+  background-color: var(--color-mixed, var(--accent-fallback));
 }
 
 [id] {
